@@ -1,0 +1,45 @@
+// types.ts
+export interface Medicine {
+  id: number;
+  name: string;
+  category: string;
+  price: string;
+  originalPrice: string;
+  image: string;
+  rating: number;
+  reviews: number;
+  availability: string;
+  description: string;
+  prescription: boolean;
+  rare: boolean;
+  keywords: string[];
+}
+
+export interface CartItem extends Medicine {
+  quantity: number;
+}
+
+export interface User {
+  id: number;
+  email: string;
+  firstName: string;
+  lastName: string;
+  phone: string;
+  avatar: string;
+}
+
+export interface Category {
+  id: string;
+  name: string;
+  icon: string;
+  count: number;
+}
+
+export interface FormData {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  phone: string;
+  confirmPassword: string;
+}
