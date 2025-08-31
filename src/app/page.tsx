@@ -134,16 +134,16 @@ export default function HomePage() {
               <section className="mb-12">
                 <h2 className="text-2xl font-bold mb-6">Featured Medicines</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                  {medicines.filter(m => m.rare).map((medicine) => (
-                    <MedicineCard 
-                      key={medicine.id}
-                      medicine={medicine}
-                      cartItems={cartItems}
-                      addToCart={addToCart}
-                      user={user}
-                      openAuthModal={openAuthModal}
-                    />
-                  ))}
+                {medicines.filter((m, index) => m.rare).map((medicine, index) => (
+                  <MedicineCard 
+                    key={`${medicine.id}-${index}`}
+                    medicine={medicine}
+                    cartItems={cartItems}
+                    addToCart={addToCart}
+                    user={user}
+                    openAuthModal={openAuthModal}
+                  />
+                ))}
                 </div>
               </section>
             )}
@@ -163,9 +163,9 @@ export default function HomePage() {
                 </div>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                  {filteredMedicines.map((medicine) => (
+                  {filteredMedicines.map((medicine, index) => (
                     <MedicineCard 
-                      key={medicine.id}
+                      key={`${medicine.id}-${index}`}
                       medicine={medicine}
                       cartItems={cartItems}
                       addToCart={addToCart}
