@@ -2,6 +2,7 @@
 import React from 'react';
 import { Star, ShoppingCart } from 'lucide-react';
 import { Medicine, CartItem, User } from '../type';
+import PharmacyLocations from "./PharmacyLocations";
 
 interface MedicineCardProps {
   medicine: Medicine;
@@ -69,6 +70,11 @@ const MedicineCard: React.FC<MedicineCardProps> = ({
             <p className="text-xs text-blue-800 font-semibold">⚠️ Prescription Required</p>
           </div>
         )}
+
+        {/* ✅ Show Pharmacy Locations */}
+        <div className="mb-4">
+          <PharmacyLocations locations={medicine.pharmacyLocations} />
+        </div>
         
         <button 
           onClick={() => addToCart(medicine)}

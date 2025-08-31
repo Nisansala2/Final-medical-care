@@ -13,6 +13,7 @@ export interface Medicine {
   prescription: boolean;
   rare: boolean;
   keywords: string[];
+  pharmacyLocations?: PharmacyLocation[];
 }
 
 export interface CartItem extends Medicine {
@@ -42,4 +43,12 @@ export interface FormData {
   lastName: string;
   phone: string;
   confirmPassword: string;
+}
+
+export interface PharmacyLocation {
+  name: string;       // Pharmacy name
+  address: string;    // Address
+  latitude: number;   // Coordinates for map/distance features
+  longitude: number;
+  stock: number;      // How many units available
 }

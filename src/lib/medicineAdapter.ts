@@ -17,5 +17,12 @@ export function adaptMedicineForComponents(dbMedicine: any): Medicine {
     prescription: dbMedicine.prescriptionRequired || false,
     rare: dbMedicine.featured || false, // Map featured to rare
     keywords: dbMedicine.ingredients || [], // Use ingredients as keywords
+    pharmacyLocations: dbMedicine.pharmacyLocations?.map((loc: any) => ({
+      name: loc.name,
+      address: loc.address,
+      latitude: loc.latitude,
+      longitude: loc.longitude,
+      stock: loc.stock
+    })) || []
   };
 }
