@@ -7,8 +7,8 @@ interface CartModalProps {
   showCart: boolean;
   setShowCart: (show: boolean) => void;
   cartItems: CartItem[];
-  updateQuantity: (medicineId: number, newQuantity: number) => void;
-  removeFromCart: (medicineId: number) => void;
+  updateQuantity: (medicineId: string, newQuantity: number) => void;
+  removeFromCart: (medicineId: string) => void;
   getTotalPrice: () => number;
   getTotalItems: () => number;
 }
@@ -63,14 +63,14 @@ const CartModal: React.FC<CartModalProps> = ({
                   
                   <div className="flex items-center space-x-2">
                     <button
-                      onClick={() => updateQuantity(Number(item.id), item.quantity - 1)}
+                    onClick={() => updateQuantity(item.id, item.quantity - 1)}
                       className="p-1 hover:bg-gray-100 rounded-full"
                     >
                       <Minus className="h-4 w-4" />
                     </button>
                     <span className="w-8 text-center font-semibold">{item.quantity}</span>
                     <button
-                      onClick={() => updateQuantity(Number(item.id), item.quantity + 1)}
+                    onClick={() => updateQuantity(item.id, item.quantity + 1)}
                       className="p-1 hover:bg-gray-100 rounded-full"
                     >
                       <Plus className="h-4 w-4" />
@@ -78,7 +78,7 @@ const CartModal: React.FC<CartModalProps> = ({
                   </div>
                   
                   <button
-                    onClick={() => removeFromCart(Number(item.id))}
+                    onClick={() => removeFromCart(item.id)}
                     className="p-2 text-red-500 hover:bg-red-50 rounded-full"
                   >
                     <X className="h-5 w-5" />
