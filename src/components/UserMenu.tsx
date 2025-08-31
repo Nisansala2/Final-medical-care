@@ -7,7 +7,7 @@ interface UserMenuProps {
   user: User | null;
   showUserMenu: boolean;
   setShowUserMenu: (show: boolean) => void;
-  openAuthModal: (mode: string) => void;
+  openAuthModal: (mode: 'login' | 'signup') => void;
   handleLogout: () => void;
 }
 

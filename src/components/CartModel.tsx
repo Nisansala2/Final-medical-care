@@ -62,23 +62,23 @@ const CartModal: React.FC<CartModalProps> = ({
                   </div>
                   
                   <div className="flex items-center space-x-2">
-                    <button 
-                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                    <button
+                      onClick={() => updateQuantity(Number(item.id), item.quantity - 1)}
                       className="p-1 hover:bg-gray-100 rounded-full"
                     >
                       <Minus className="h-4 w-4" />
                     </button>
                     <span className="w-8 text-center font-semibold">{item.quantity}</span>
-                    <button 
-                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                    <button
+                      onClick={() => updateQuantity(Number(item.id), item.quantity + 1)}
                       className="p-1 hover:bg-gray-100 rounded-full"
                     >
                       <Plus className="h-4 w-4" />
                     </button>
                   </div>
                   
-                  <button 
-                    onClick={() => removeFromCart(item.id)}
+                  <button
+                    onClick={() => removeFromCart(Number(item.id))}
                     className="p-2 text-red-500 hover:bg-red-50 rounded-full"
                   >
                     <X className="h-5 w-5" />

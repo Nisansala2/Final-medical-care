@@ -9,7 +9,7 @@ interface MedicineCardProps {
   cartItems: CartItem[];
   addToCart: (medicine: Medicine) => void;
   user: User | null;
-  openAuthModal: (mode: string) => void;
+  openAuthModal: (mode: 'login' | 'signup') => void;
 }
 
 const MedicineCard: React.FC<MedicineCardProps> = ({

@@ -14,7 +14,7 @@ interface HeaderProps {
   user: User | null;
   setShowUserMenu: (show: boolean) => void;
   showUserMenu: boolean;
-  openAuthModal: (mode: string) => void;
+  openAuthModal: (mode: 'login' | 'signup') => void;
   handleLogout: () => void;
 }
 

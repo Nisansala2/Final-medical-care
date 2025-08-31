@@ -8,7 +8,8 @@ import Footer from '@/components/Footer';
 import CategoryFilter from '@/components/CategoryFilter';
 import MedicineCard from '@/components/MedicineCard';
 import LoadingSpinner from '@/components/LoadingSpinner';
-import { Medicine, User, CartItem } from '@/type'; // Using your existing types
+import AuthModal from '@/components/AuthModel';
+import { Medicine, User, CartItem, FormData } from '@/type'; // Using your existing types
 
 export default function HomePage() {
   // State management
@@ -18,7 +19,30 @@ export default function HomePage() {
   const [user, setUser] = useState<User | null>(null);
   const [showCart, setShowCart] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
-  
+
+  // Auth modal state
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [authMode, setAuthMode] = useState<'login' | 'signup'>('login');
+  const [formData, setFormData] = useState<FormData>({
+    email: '',
+    password: '',
+    firstName: '',
+    lastName: '',
+    phone: '',
+    confirmPassword: ''
+  });
+  const [showPassword, setShowPassword] = useState(false);
+
+  // Check for existing token on page load
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      // TODO: Validate token with backend and set user
+      // For now, we'll just check if token exists
+      // In a real app, you'd validate the token with the server
+    }
+  }, []);
+
   // Fetch medicines from MongoDB
   const { medicines: rawMedicines, loading, error } = useMedicines({
     category: selectedCategory || undefined
@@ -63,14 +87,102 @@ export default function HomePage() {
     return cartItems.reduce((total, item) => total + item.quantity, 0);
   };
 
-  const openAuthModal = (mode: string) => {
-    console.log('Opening auth modal:', mode);
+  const openAuthModal = (mode: 'login' | 'signup') => {
+    setAuthMode(mode);
+    setShowAuthModal(true);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setUser(data.user);
+        localStorage.setItem('token', data.token);
+        setShowAuthModal(false);
+        setFormData({
+          email: '',
+          password: '',
+          firstName: '',
+          lastName: '',
+          phone: '',
+          confirmPassword: ''
+        });
+      } else {
+        alert(data.error || 'Login failed');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      alert('An error occurred during login');
+    }
+  };
+
+  const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          phone: formData.phone,
+          confirmPassword: formData.confirmPassword,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setUser(data.user);
+        localStorage.setItem('token', data.token);
+        setShowAuthModal(false);
+        setFormData({
+          email: '',
+          password: '',
+          firstName: '',
+          lastName: '',
+          phone: '',
+          confirmPassword: ''
+        });
+      } else {
+        alert(data.error || 'Signup failed');
+      }
+    } catch (error) {
+      console.error('Signup error:', error);
+      alert('An error occurred during signup');
+    }
   };
 
   const handleLogout = () => {
     setUser(null);
     setCartItems([]);
     setShowUserMenu(false);
+    localStorage.removeItem('token');
   };
 
   if (error) {
@@ -185,6 +297,19 @@ export default function HomePage() {
       
 
       <Footer />
+
+      <AuthModal
+        showAuthModal={showAuthModal}
+        setShowAuthModal={setShowAuthModal}
+        authMode={authMode}
+        setAuthMode={setAuthMode}
+        formData={formData}
+        handleInputChange={handleInputChange}
+        handleLogin={handleLogin}
+        handleSignup={handleSignup}
+        showPassword={showPassword}
+        setShowPassword={setShowPassword}
+      />
     </div>
   );
 }

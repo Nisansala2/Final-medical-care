@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
             </p>
             <div className="flex space-x-4">
               <Phone className="h-5 w-5 text-gray-400" />
-              <span className="text-gray-400">+91 1800-123-4567</span>
+              <span className="text-gray-400">0771527935</span>
             </div>
           </div>
           
@@ -55,7 +55,7 @@ const Footer: React.FC = () => {
         </div>
         
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; 2024 MediRare. All rights reserved. Licensed pharmacy with regulatory compliance.</p>
+          <p>&copy; 2025 MediRare. All rights reserved. Licensed pharmacy with regulatory compliance.</p>
         </div>
       </div>
     </footer>

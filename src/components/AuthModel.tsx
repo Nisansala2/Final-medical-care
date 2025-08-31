@@ -6,8 +6,8 @@ import { FormData } from '../type';
 interface AuthModalProps {
   showAuthModal: boolean;
   setShowAuthModal: (show: boolean) => void;
-  authMode: string;
-  setAuthMode: (mode: string) => void;
+  authMode: 'login' | 'signup';
+  setAuthMode: (mode: 'login' | 'signup') => void;
   formData: FormData;
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleLogin: (e: React.FormEvent<HTMLFormElement>) => void;

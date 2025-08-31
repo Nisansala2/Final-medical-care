@@ -1,46 +1,50 @@
-# TypeScript Type Fixes - Medicine Management System
+# User Login System Implementation Plan
 
-## ✅ Completed Tasks
+## Current State Analysis
+- ✅ UserMenu.tsx: Login/logout UI already implemented
+- ✅ AuthModal.tsx: Complete login/signup modal component exists
+- ✅ Header.tsx: UserMenu integration in place
+- ✅ User model: MongoDB schema defined
+- ✅ Types: User and FormData interfaces available
+- ❌ API routes: No authentication endpoints exist
+- ❌ Integration: AuthModal not connected to main page
 
-### 1. Updated Medicine Interface (src/type.ts)
-- ✅ Added missing properties: `_id`, `manufacturer`, `dosage`, `prescriptionRequired`, `inStock`, `stockQuantity`, `featured`, `ingredients`, `sideEffects`, `warnings`, `createdAt`, `updatedAt`
-- ✅ Changed `price` and `originalPrice` from `string` to `number` to match MongoDB schema
-- ✅ Changed `id` from `number` to `string` for MongoDB ObjectId compatibility
+## Implementation Steps
 
-### 2. Updated PharmacyLocation Interface (src/type.ts)
-- ✅ Added `phone` and `distance` properties used in MedicineForm.tsx
-- ✅ Ensured `stock` property is included and required
+### Phase 1: API Routes Creation
+- [ ] Create `src/app/api/auth/login/route.ts` for user login
+- [ ] Create `src/app/api/auth/signup/route.ts` for user registration
+- [ ] Add password hashing with bcrypt
+- [ ] Add JWT token generation for sessions
 
-### 3. Fixed MedicineForm.tsx
-- ✅ Removed local PharmacyLocation interface
-- ✅ Imported PharmacyLocation from global types
-- ✅ Added `stock` property to newPharmacy state initialization
-- ✅ Fixed reset of newPharmacy state to include all required properties
-- ✅ Updated price/originalPrice handling to work with numbers
+### Phase 2: Main Page Integration
+- [ ] Update `src/app/page.tsx` to integrate AuthModal
+- [ ] Add state management for auth modal (showAuthModal, authMode, formData, showPassword)
+- [ ] Implement form handlers (handleInputChange, handleLogin, handleSignup)
+- [ ] Update openAuthModal function to show modal
+- [ ] Add API calls for authentication
+- [ ] Add error handling for failed login/signup
 
-### 4. TypeScript Validation
-- ✅ Ran `npx tsc --noEmit` - No TypeScript errors found!
-- ✅ All type mismatches resolved successfully
+### Phase 3: User Session Management
+- [ ] Add JWT token storage in localStorage
+- [ ] Add token validation on page load
+- [ ] Update User interface to match MongoDB schema
+- [ ] Add logout functionality with token cleanup
 
-## 🔍 Verification Needed
+### Phase 4: Testing & Security
+- [ ] Test login/signup flow
+- [ ] Add input validation
+- [ ] Add password strength requirements
+- [ ] Add rate limiting for auth endpoints
+- [ ] Add CSRF protection
 
-### Files to Check for Type Compatibility
-- [ ] `src/components/admin/MedicineList.tsx` - Uses Medicine properties
-- [ ] `src/app/admin/medicines/page.tsx` - Admin page component
-- [ ] `src/app/api/medicines/route.ts` - API routes
-- [ ] `src/app/api/medicines/[id]/route.ts` - Individual medicine API
-- [ ] `src/models/Medicine.ts` - MongoDB schema (already verified)
+## Files to be Modified
+- `src/app/page.tsx` - Main integration and state management
+- `src/app/api/auth/login/route.ts` - New API route
+- `src/app/api/auth/signup/route.ts` - New API route
+- `src/type.ts` - Update User interface if needed
 
-### Potential Issues to Address
-- [ ] Check if any components are still using old string-based price types
-- [ ] Verify that all Medicine properties are properly handled in forms and displays
-- [ ] Ensure API responses match the updated TypeScript interfaces
-
-## 📋 Next Steps
-1. Test the admin medicine management functionality
-2. Check for any remaining TypeScript errors
-3. Verify data flow between frontend and backend
-4. Test CRUD operations for medicines
-
-## 🎯 Goal
-Eliminate all TypeScript errors related to Medicine and PharmacyLocation type mismatches while maintaining full compatibility with the existing MongoDB schema and API structure.
+## Dependencies
+- bcryptjs for password hashing
+- jsonwebtoken for JWT tokens
+- @types/bcryptjs and @types/jsonwebtoken for TypeScript support
