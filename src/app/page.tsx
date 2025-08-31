@@ -5,6 +5,7 @@ import { useMedicines } from '@/hooks/useMedicines';
 import { adaptMedicineForComponents } from '@/lib/medicineAdapter';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import HeroSection from '@/components/HeroSection';
 import CategoryFilter from '@/components/CategoryFilter';
 import MedicineCard from '@/components/MedicineCard';
 import LoadingSpinner from '@/components/LoadingSpinner';
@@ -210,13 +211,13 @@ export default function HomePage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-lime-200">
         <div className="container mx-auto px-4 py-8">
           <div className="text-center text-red-600">
             <h2 className="text-xl font-bold mb-4">Error Loading Medicines</h2>
             <p className="mb-4">{error}</p>
-            <button 
-              onClick={() => window.location.reload()} 
+            <button
+              onClick={() => window.location.reload()}
               className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
             >
               Retry
@@ -228,7 +229,7 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-lime-200">
       <Header 
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
@@ -244,10 +245,7 @@ export default function HomePage() {
       
       <main className="container mx-auto px-4 py-8">
         {/* Hero Section */}
-        <section className="bg-blue-600 text-white rounded-lg p-8 mb-8">
-          <h1 className="text-4xl font-bold mb-4">Your Trusted Online Pharmacy</h1>
-          <p className="text-xl">Quality medicines delivered to your doorstep</p>
-        </section>
+        <HeroSection />
 
         {/* Category Filter */}
         <div className="mb-8">

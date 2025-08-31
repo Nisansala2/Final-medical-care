@@ -36,7 +36,7 @@ const Header: React.FC<HeaderProps> = ({
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">
+              <div className="w-10 h-10 bg-green-500  rounded-lg flex items-center justify-center text-white font-bold text-xl">
                 M
               </div>
               <span className="text-2xl font-bold text-gray-900">MediRare</span>
