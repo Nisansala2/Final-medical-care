@@ -143,8 +143,8 @@ export default function AdminDashboard() {
 
   // Filter medicines based on search and category
   const filteredMedicines = (medicines || []).filter(medicine => {
-    const matchesSearch = medicine.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         medicine.description.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch = (medicine.name || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         (medicine.description || '').toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = !selectedCategory || medicine.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
