@@ -162,6 +162,57 @@ const sampleMedicines = [
         distance: "5.2 km"
       }
     ]
+  },
+  {
+    name: "Vyndaqel (Tafamidis) 20mg",
+    description: "For Transthyretin Amyloidosis treatment",
+    price: 300000,
+    category: "Rare Diseases",
+    manufacturer: "Pfizer",
+    dosage: "20mg",
+    prescriptionRequired: true,
+    inStock: true,
+    stockQuantity: 50,
+    featured: true,
+    rare: true,
+    ingredients: ["Tafamidis"],
+    sideEffects: ["Nausea", "Diarrhea"],
+    warnings: ["May cause liver damage"],
+    pharmacyLocations: [
+      {
+        name: "Specialty Pharmacy",
+        latitude: 6.9271,
+        longitude: 79.8612,
+        address: "123 Main St, Colombo",
+        phone: "011-2345678",
+        distance: "1.2 km"
+      }
+    ]
+  },
+  {
+    name: "Venclexta (Venetoclax) 100mg",
+    description: "For Chronic Lymphocytic Leukemia",
+    price: 175000,
+    category: "Oncology",
+    manufacturer: "AbbVie",
+    dosage: "100mg",
+    prescriptionRequired: true,
+    inStock: true,
+    stockQuantity: 30,
+    featured: true,
+    ingredients: ["Venetoclax"],
+    sideEffects: ["Fatigue", "Nausea"],
+    warnings: ["May cause tumor lysis syndrome"],
+    pharmacyLocations: [
+      {
+        name: "Oncology Pharmacy",
+        latitude: 6.9147,
+        longitude: 79.9733,
+        address: "45 Galle Road, Colombo",
+        phone: "011-3456789",
+        distance: "3.5 km"
+      }
+    ]
   }
 ];
 

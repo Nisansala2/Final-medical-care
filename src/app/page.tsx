@@ -9,6 +9,7 @@ import CategoryFilter from '@/components/CategoryFilter';
 import MedicineCard from '@/components/MedicineCard';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import AuthModal from '@/components/AuthModel';
+import CartModal from '@/components/CartModel';
 import { Medicine, User, CartItem, FormData } from '@/type'; // Using your existing types
 
 export default function HomePage() {
@@ -85,6 +86,28 @@ export default function HomePage() {
 
   const getTotalItems = () => {
     return cartItems.reduce((total, item) => total + item.quantity, 0);
+  };
+
+  const updateQuantity = (medicineId: string, newQuantity: number) => {
+    if (newQuantity === 0) {
+      removeFromCart(medicineId);
+    } else {
+      setCartItems(cartItems.map(item =>
+        item.id === medicineId
+          ? { ...item, quantity: newQuantity }
+          : item
+      ));
+    }
+  };
+
+  const removeFromCart = (medicineId: string) => {
+    setCartItems(cartItems.filter(item => item.id !== medicineId));
+  };
+
+  const getTotalPrice = () => {
+    return cartItems.reduce((total, item) => {
+      return total + (item.price * item.quantity);
+    }, 0);
   };
 
   const openAuthModal = (mode: 'login' | 'signup') => {
@@ -309,6 +332,16 @@ export default function HomePage() {
         handleSignup={handleSignup}
         showPassword={showPassword}
         setShowPassword={setShowPassword}
+      />
+
+      <CartModal
+        showCart={showCart}
+        setShowCart={setShowCart}
+        cartItems={cartItems}
+        updateQuantity={updateQuantity}
+        removeFromCart={removeFromCart}
+        getTotalPrice={getTotalPrice}
+        getTotalItems={getTotalItems}
       />
     </div>
   );
