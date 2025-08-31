@@ -4,8 +4,8 @@ export interface Medicine {
   id: string;
   name: string;
   category: string;
-  price: number;
-  originalPrice: number;
+  price: string;
+  originalPrice: string;
   image: string;
   rating: number;
   reviews: number;
