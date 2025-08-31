@@ -1,10 +1,11 @@
 // types.ts
 export interface Medicine {
-  id: number;
+  _id?: string;
+  id: string;
   name: string;
   category: string;
-  price: string;
-  originalPrice: string;
+  price: number;
+  originalPrice: number;
   image: string;
   rating: number;
   reviews: number;
@@ -13,7 +14,18 @@ export interface Medicine {
   prescription: boolean;
   rare: boolean;
   keywords: string[];
+  manufacturer: string;
+  dosage: string;
+  prescriptionRequired: boolean;
+  inStock: boolean;
+  stockQuantity: number;
+  featured: boolean;
+  ingredients: string[];
+  sideEffects: string[];
+  warnings: string[];
   pharmacyLocations?: PharmacyLocation[];
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export interface CartItem extends Medicine {
@@ -50,5 +62,7 @@ export interface PharmacyLocation {
   address: string;    // Address
   latitude: number;   // Coordinates for map/distance features
   longitude: number;
+  phone?: string;     // Phone number
+  distance?: string;  // Distance from user location
   stock: number;      // How many units available
 }
