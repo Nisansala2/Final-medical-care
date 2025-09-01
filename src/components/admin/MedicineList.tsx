@@ -44,8 +44,8 @@ export default function MedicineList({ medicines, onEdit, onDelete }: MedicineLi
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {medicines.map((medicine) => (
-              <tr key={medicine._id} className="hover:bg-gray-50">
+            {medicines.map((medicine, index) => (
+              <tr key={medicine._id || `medicine-${index}`} className="hover:bg-gray-50">
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div>
                     <div className="text-sm font-medium text-gray-900">
