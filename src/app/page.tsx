@@ -30,7 +30,8 @@ export default function HomePage() {
     firstName: '',
     lastName: '',
     phone: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    role: 'customer'
   });
   const [showPassword, setShowPassword] = useState(false);
 
@@ -115,7 +116,7 @@ export default function HomePage() {
     setShowAuthModal(true);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -134,6 +135,7 @@ export default function HomePage() {
         body: JSON.stringify({
           email: formData.email,
           password: formData.password,
+          role: formData.role
         }),
       });
 
@@ -149,7 +151,8 @@ export default function HomePage() {
           firstName: '',
           lastName: '',
           phone: '',
-          confirmPassword: ''
+          confirmPassword: '',
+          role: 'customer'
         });
       } else {
         alert(data.error || 'Login failed');
@@ -175,6 +178,7 @@ export default function HomePage() {
           lastName: formData.lastName,
           phone: formData.phone,
           confirmPassword: formData.confirmPassword,
+          role: formData.role
         }),
       });
 
@@ -190,7 +194,8 @@ export default function HomePage() {
           firstName: '',
           lastName: '',
           phone: '',
-          confirmPassword: ''
+          confirmPassword: '',
+          role: 'customer'
         });
       } else {
         alert(data.error || 'Signup failed');

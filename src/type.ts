@@ -39,6 +39,7 @@ export interface User {
   lastName: string;
   phone: string;
   avatar: string;
+  role: 'admin' | 'customer';
 }
 
 export interface Category {
@@ -55,6 +56,7 @@ export interface FormData {
   lastName: string;
   phone: string;
   confirmPassword: string;
+  role: 'admin' | 'customer';
 }
 
 export interface PharmacyLocation {

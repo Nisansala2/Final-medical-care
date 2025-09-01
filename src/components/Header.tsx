@@ -72,6 +72,15 @@ const Header: React.FC<HeaderProps> = ({
               openAuthModal={openAuthModal}
               handleLogout={handleLogout}
             />
+            {user && user.role === 'admin' && (
+              <button
+                onClick={() => window.location.href = '/admin'}
+                className="ml-4 px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+                title="Go to Admin Dashboard"
+              >
+                Admin Profile
+              </button>
+            )}
           </div>
         </div>
       </div>

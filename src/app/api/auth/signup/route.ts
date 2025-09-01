@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
   try {
     await connectToDatabase();
 
-    const { email, password, firstName, lastName, phone, confirmPassword } = await request.json();
+    const { email, password, firstName, lastName, phone, confirmPassword, role } = await request.json();
 
     // Validate input
     if (!email || !password || !firstName || !lastName) {
@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
       firstName,
       lastName,
       phone: phone || '',
-      role: 'customer',
+      role: role || 'customer',
       isActive: true
     });
 
